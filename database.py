@@ -1,10 +1,12 @@
-from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime
+from sqlalchemy import (create_engine, Column, Integer,
+                        String, Boolean, DateTime)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-class Reminder(Base):
+
+class ReminderBase(Base):
     __tablename__ = 'reminders'
 
     id = Column(Integer, primary_key=True)
@@ -15,6 +17,7 @@ class Reminder(Base):
 
     def __repr__(self):
         return f"Reminder(id={self.id}, title='{self.title}', due_date='{self.due_date}')"
+
 
 # Создание движка SQLite
 engine = create_engine('sqlite:///reminders.db')
